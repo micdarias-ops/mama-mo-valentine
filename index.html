@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine? 💕</title>
     <style>
+        /* Mobile only: make the NO button tiny 😈 */
+@media (max-width: 768px) {
+    #noBtn {
+        font-size: 8px;
+        padding: 2px 4px;
+        width: auto;
+        height: auto;
+        opacity: 0.6;
+    }
+}
+
         * {
             margin: 0;
             padding: 0;
@@ -89,8 +100,6 @@
             margin-top: 40px;
             min-height: 200px;
             position: relative;
-        #noBtn {
-    position: absolute;
 }
 
         .btn {
@@ -229,7 +238,7 @@
 
         <div class="buttons-container">
             <button class="btn" id="yesBtn" onclick="sayYes()">YES! 💕</button>
-            <button class="btn" id="noBtn" onclick="sayNo()">No</button>
+            <button class="btn" id="noBtn" onmouseover="moveButton(event)" ontouchstart="moveButton(event)" onclick="sayNo()">No</button>
         </div>
     </div>
 
@@ -327,46 +336,7 @@
         }
        
     </script>
-    <script>
-const noBtn = document.getElementById("noBtn");
-const container = document.querySelector(".buttons-container");
-
-// Detect mobile devices
-const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-// Move button to random position (FAST)
-function moveNoButton() {
-    const containerRect = container.getBoundingClientRect();
-    const btnRect = noBtn.getBoundingClientRect();
-
-    const maxX = containerRect.width - btnRect.width;
-    const maxY = containerRect.height - btnRect.height;
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-}
-
-// 🖥️ Desktop: hover dodge
-noBtn.addEventListener("mouseenter", moveNoButton);
-
-// 📱 Mobile: dodge when finger is nearby
-if (isMobile) {
-    document.addEventListener("touchmove", (e) => {
-        const touch = e.touches[0];
-        const btnRect = noBtn.getBoundingClientRect();
-
-        const dx = Math.abs(touch.clientX - (btnRect.left + btnRect.width / 2));
-        const dy = Math.abs(touch.clientY - (btnRect.top + btnRect.height / 2));
-
-        if (dx < 100 && dy < 100) {
-            moveNoButton();
-        }
-    });
-}
-</script>
+    
 
 </body>
 </html>
