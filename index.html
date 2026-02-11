@@ -5,7 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine? 💕</title>
     <style>
-       
+       /* 📱 Mobile: place NO beside YES, not on top of it */
+@media (max-width: 768px) {
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+
+    #noBtn {
+        position: relative;   /* override absolute */
+        top: auto;
+        left: auto;
+        font-size: 7px;
+        padding: 2px 4px;
+        opacity: 0.5;
+        transform: scale(0.6);
+    }
+}
+
 
         * {
             margin: 0;
@@ -328,6 +347,5 @@
        
     </script>
     
-
 </body>
 </html>
